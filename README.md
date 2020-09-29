@@ -38,4 +38,24 @@ Run the program:
 
 `npm start template.json params out`
 
-This will combine the template with the parameters and save an output file for each parameter file.
+This will combine the template with the parameters and save an output file for each parameter file. The output directory will contain:
+
+`out/p1.json`
+
+```json
+{
+    "field1": "value1",
+    "field2": "other value 1",
+    "field3": "value3"
+}
+```
+
+`out/p2.json`
+
+```json
+{
+    "field1": "value1",
+    "field2": "other value 2",
+    "field3": "value3"
+}
+```
