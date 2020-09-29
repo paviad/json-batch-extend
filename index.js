@@ -1,0 +1,48 @@
+const fs = require('fs');
+const path = require('path');
+
+// First argument is the template json file path
+const templatePath = process.argv[2];
+
+// Second argument is the directory with the parameter json files
+const parametersDir = process.argv[3];
+
+// Third argument is the directory where the output files will be written
+const outputDir = process.argv[4];
+
+// Read a list of all parameter json files
+const parameterFiles = fs.readdirSync(parametersDir);
+
+// Read the template json file and parse it
+const templateObject = JSON.parse(fs.readFileSync(templatePath));
+
+console.log('Template object', templateObject);
+
+// Loop over each parameter file
+parameterFiles.forEach(x => {
+
+    // Set the parameter file path
+    const inputPath = path.join('.', parametersDir, x);
+
+    // Set the output file path
+    const outputPath = path.join('.', outputDir, x);
+
+    // Read the parameter file and parse it
+    const parameterObject = JSON.parse(fs.readFileSync(inputPath));
+
+    console.log(`Parameter ${x}`, parameterObject);
+
+    // Create the output object by using the template object first, and then
+    //   applying all the values in the parameter object
+    const outputObject = {
+        ...templateObject,
+        ...parameterObject,
+    }
+
+    console.log('Output object', outputObject);
+    console.log('-----------');
+
+    // Write the output object to the output directory,
+    //   with the same name as the parameter file name
+    fs.writeFileSync(outputPath, JSON.stringify(outputObject));
+});
