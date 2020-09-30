@@ -1,14 +1,27 @@
+#!/usr/bin/env node
 const fs = require('fs');
 const path = require('path');
+const { program } = require('commander');
+
 
 // First argument is the template json file path
-const templatePath = process.argv[2];
+let templatePath;
 
 // Second argument is the directory with the parameter json files
-const parametersDir = process.argv[3];
+let parametersDir;
 
 // Third argument is the directory where the output files will be written
-const outputDir = process.argv[4];
+let outputDir;
+
+program
+    .version('1.0.0')
+    .arguments('<template> <paramDir> <outDir>')
+    .action(function (a1, a2, a3) {
+        templatePath = a1;
+        parametersDir = a2;
+        outputDir = a3;
+    })
+    .parse(process.argv);
 
 // Read a list of all parameter json files
 const parameterFiles = fs.readdirSync(parametersDir);
@@ -17,6 +30,7 @@ const parameterFiles = fs.readdirSync(parametersDir);
 const templateObject = JSON.parse(fs.readFileSync(templatePath));
 
 console.log('Template object', templateObject);
+console.log('===========');
 
 // Loop over each parameter file
 parameterFiles.forEach(x => {

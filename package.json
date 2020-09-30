@@ -3,10 +3,16 @@
   "version": "1.0.0",
   "description": "Extend a json template with json objects in a parameters directory, and create an output for each parameter object.",
   "main": "index.js",
+  "bin": {
+    "jbe": "index.js"
+  },
   "scripts": {
     "start": "node index.js",
     "test": "npm start test/template.json test/params test/out && dir test\\out"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^6.1.0"
+  }
 }

@@ -1,4 +1,14 @@
-## JSON templating
+# JSON Templating
+
+## Installation
+
+Install npm global package `npm i -g json-batch-extend`
+
+## Usage
+
+Basic usage of the command is `jbe <template> <paramDir> <outDir>`. You may run `jbe -h` to get usage information.
+
+## Example
 
 Create a template file json file, example:
 
@@ -36,7 +46,7 @@ Create the output directory, example:
 
 Run the program:
 
-`npm start template.json params out`
+`jbe template.json params out`
 
 This will combine the template with the parameters and save an output file for each parameter file. The output directory will contain:
 
